@@ -1,0 +1,239 @@
+/*
+ * Cloudy Canvas design tokens.
+ *
+ * Layer 1 — palette scales (--ice-*, --seal-*, ...): raw colors inspired by the mascot, the "foca watona".
+ *   Only semantic tokens and the design-system preview page should reference them.
+ * Layer 2 — semantic tokens (--background, --primary, ...): what components use.
+ *
+ * Light is the only tuned theme for now. Mapped into Tailwind in src/app/styles.css.
+ */
+:root {
+  /* ── Palette ─────────────────────────────────────────────────────────── */
+
+  /* Ice: the soft sky blue behind the seal illustration. Primary. */
+  --ice-50: oklch(0.975 0.012 245);
+  --ice-100: oklch(0.95 0.025 245);
+  --ice-200: oklch(0.905 0.045 245);
+  --ice-300: oklch(0.85 0.07 245);
+  --ice-400: oklch(0.76 0.1 245);
+  --ice-500: oklch(0.66 0.125 245);
+  --ice-600: oklch(0.56 0.13 247);
+  --ice-700: oklch(0.48 0.12 248);
+  --ice-800: oklch(0.4 0.1 250);
+  --ice-900: oklch(0.33 0.075 252);
+  --ice-950: oklch(0.24 0.055 254);
+
+  /* Seal: the fur — white belly (50) to light spots (300–400), dark spots (600–700) and outline ink (900). Neutral. */
+  --seal-50: oklch(0.985 0.003 250);
+  --seal-100: oklch(0.963 0.005 250);
+  --seal-200: oklch(0.925 0.008 250);
+  --seal-300: oklch(0.87 0.011 250);
+  --seal-400: oklch(0.74 0.015 250);
+  --seal-500: oklch(0.6 0.018 252);
+  --seal-600: oklch(0.5 0.02 252);
+  --seal-700: oklch(0.42 0.02 254);
+  --seal-800: oklch(0.34 0.02 254);
+  --seal-900: oklch(0.27 0.02 256);
+  --seal-950: oklch(0.19 0.018 256);
+
+  /* Blush: the peach cheeks. Accent — use sparingly. */
+  --blush-50: oklch(0.975 0.015 35);
+  --blush-100: oklch(0.95 0.03 35);
+  --blush-200: oklch(0.91 0.055 35);
+  --blush-300: oklch(0.85 0.085 35);
+  --blush-400: oklch(0.78 0.115 35);
+  --blush-500: oklch(0.7 0.14 35);
+  --blush-600: oklch(0.6 0.15 33);
+  --blush-700: oklch(0.5 0.13 31);
+  --blush-800: oklch(0.41 0.1 30);
+  --blush-900: oklch(0.33 0.08 30);
+  --blush-950: oklch(0.24 0.06 30);
+
+  /* Sand: warm, desaturated yellow. Board files. */
+  --sand-50: oklch(0.98 0.02 88);
+  --sand-100: oklch(0.96 0.04 88);
+  --sand-200: oklch(0.92 0.07 87);
+  --sand-300: oklch(0.88 0.1 86);
+  --sand-400: oklch(0.83 0.12 84);
+  --sand-500: oklch(0.76 0.13 80);
+  --sand-600: oklch(0.64 0.12 75);
+  --sand-700: oklch(0.52 0.1 70);
+  --sand-800: oklch(0.42 0.08 68);
+  --sand-900: oklch(0.34 0.06 66);
+  --sand-950: oklch(0.25 0.04 66);
+
+  /* Lilac: softened violet. Design files. */
+  --lilac-50: oklch(0.975 0.012 295);
+  --lilac-100: oklch(0.95 0.025 295);
+  --lilac-200: oklch(0.9 0.05 295);
+  --lilac-300: oklch(0.83 0.08 295);
+  --lilac-400: oklch(0.73 0.12 295);
+  --lilac-500: oklch(0.63 0.15 294);
+  --lilac-600: oklch(0.54 0.16 293);
+  --lilac-700: oklch(0.46 0.14 292);
+  --lilac-800: oklch(0.38 0.11 292);
+  --lilac-900: oklch(0.3 0.08 292);
+  --lilac-950: oklch(0.22 0.06 292);
+
+  /* ── Semantic: surfaces & text ───────────────────────────────────────── */
+  --background: var(--seal-50);
+  --foreground: var(--seal-900);
+  --surface: oklch(1 0 0);
+  --surface-foreground: var(--seal-900);
+  --surface-sunken: var(--seal-100);
+  --overlay: oklch(0.19 0.018 256 / 0.4);
+  --muted: var(--seal-100);
+  --muted-foreground: var(--seal-500);
+  --subtle-foreground: var(--seal-400);
+  --hover: var(--seal-100);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--seal-900);
+
+  /* ── Semantic: canvas (read by the editor host and passed to the engine) ── */
+  --canvas-background: var(--seal-50);
+  --canvas-grid: var(--seal-300);
+  --canvas-selection: var(--ice-500);
+  --canvas-snap: oklch(0.6 0.21 22);
+  --canvas-relation: var(--seal-500);
+  --canvas-ruler: oklch(1 0 0);
+  --canvas-ruler-foreground: var(--seal-500);
+  --canvas-ruler-border: var(--seal-200);
+
+  /* ── Semantic: code (syntax colors in the DBML and ER text editors) ───── */
+  --syntax-keyword: var(--ice-700);
+  --syntax-definition: var(--seal-950);
+  --syntax-property: var(--seal-800);
+  --syntax-type: var(--lilac-600);
+  --syntax-setting: var(--blush-700);
+  --syntax-string: var(--sand-700);
+  --syntax-number: var(--blush-600);
+  --syntax-operator: var(--ice-600);
+  --syntax-punctuation: var(--seal-500);
+  --syntax-comment: var(--seal-500);
+  --syntax-error: var(--destructive);
+
+  /* ── Semantic: lines ─────────────────────────────────────────────────── */
+  --border: var(--seal-200);
+  --border-strong: var(--seal-300);
+  --input: var(--seal-300);
+  --ring: var(--ice-500);
+
+  /* ── Semantic: roles (base / -foreground for text on base / -soft tint / -soft-foreground) ── */
+  --primary: var(--ice-600);
+  --primary-hover: var(--ice-700);
+  --primary-foreground: oklch(1 0 0);
+  --primary-soft: var(--ice-100);
+  --primary-soft-foreground: var(--ice-800);
+
+  --secondary: var(--seal-100);
+  --secondary-hover: var(--seal-200);
+  --secondary-foreground: var(--seal-800);
+
+  --accent: var(--blush-400);
+  --accent-hover: var(--blush-500);
+  --accent-foreground: var(--blush-950);
+  --accent-soft: var(--blush-100);
+  --accent-soft-foreground: var(--blush-800);
+
+  --board: var(--sand-500);
+  --board-foreground: var(--sand-800);
+  --board-soft: var(--sand-100);
+
+  --design: var(--lilac-500);
+  --design-foreground: var(--lilac-700);
+  --design-soft: var(--lilac-100);
+
+  --success: oklch(0.6 0.13 155);
+  --success-soft: oklch(0.95 0.04 155);
+  --warning: oklch(0.72 0.14 70);
+  --warning-soft: oklch(0.96 0.05 80);
+  --destructive: oklch(0.58 0.19 25);
+  --destructive-hover: oklch(0.52 0.18 25);
+  --destructive-foreground: oklch(1 0 0);
+  --destructive-soft: oklch(0.95 0.03 25);
+
+  /* ── Shape: sharp by design. Nothing in the UI chrome goes above 8px. ── */
+  --corner-xs: 2px;
+  --corner-sm: 3px;
+  --corner: 4px; /* buttons, inputs, chips */
+  --corner-card: 6px; /* cards, menus, popovers */
+  --corner-max: 8px; /* dialogs — the maximum */
+
+  /* ── Elevation: crisp, low-opacity, tinted with seal ink ─────────────── */
+  --shadow-color: 256 20% 18%;
+  --elevation-xs: 0 1px 0 hsl(var(--shadow-color) / 0.04);
+  --elevation-soft:
+    0 1px 2px hsl(var(--shadow-color) / 0.06), 0 2px 6px -2px hsl(var(--shadow-color) / 0.06);
+  --elevation-lifted:
+    0 2px 4px hsl(var(--shadow-color) / 0.06), 0 10px 24px -8px hsl(var(--shadow-color) / 0.14);
+  --elevation-popover:
+    0 4px 8px -2px hsl(var(--shadow-color) / 0.08), 0 16px 32px -8px hsl(var(--shadow-color) / 0.16);
+
+  /* ── Motion ──────────────────────────────────────────────────────────── */
+  --duration-fast: 150ms;
+  --duration: 200ms;
+  --easing-out: cubic-bezier(0.2, 0.7, 0.3, 1);
+
+  color-scheme: light;
+}
+
+/* The design editor's canvas: a darker gray than the board, so white frames stand out. */
+[data-product="design"] {
+  --canvas-background: var(--seal-200);
+  --canvas-grid: var(--seal-300);
+}
+
+/* TODO: Dark theme is disabled for now (see FORCE_LIGHT_THEME in stores/theme-store.ts).
+   These values are a rough derivation and need a proper pass before re-enabling. */
+.dark {
+  --background: var(--seal-950);
+  --foreground: var(--seal-100);
+  --surface: oklch(0.23 0.018 256);
+  --surface-foreground: var(--seal-100);
+  --surface-sunken: oklch(0.21 0.018 256);
+  --muted: var(--seal-900);
+  --muted-foreground: var(--seal-400);
+  --subtle-foreground: var(--seal-500);
+  --hover: var(--seal-900);
+  --popover: oklch(0.23 0.018 256);
+  --popover-foreground: var(--seal-100);
+  --border: var(--seal-800);
+  --border-strong: var(--seal-700);
+  --input: var(--seal-700);
+  --ring: var(--ice-400);
+  --primary: var(--ice-400);
+  --primary-hover: var(--ice-300);
+  --primary-foreground: var(--ice-950);
+  --primary-soft: var(--ice-900);
+  --primary-soft-foreground: var(--ice-200);
+  --secondary: var(--seal-800);
+  --secondary-hover: var(--seal-700);
+  --secondary-foreground: var(--seal-100);
+  --accent-soft: var(--blush-900);
+  --accent-soft-foreground: var(--blush-200);
+  --board-foreground: var(--sand-300);
+  --board-soft: var(--sand-900);
+  --design-foreground: var(--lilac-300);
+  --design-soft: var(--lilac-900);
+  --canvas-background: var(--seal-950);
+  --canvas-grid: var(--seal-800);
+  --canvas-selection: var(--ice-400);
+  --canvas-snap: oklch(0.7 0.18 22);
+  --canvas-relation: var(--seal-400);
+  --canvas-ruler: var(--seal-900);
+  --canvas-ruler-foreground: var(--seal-400);
+  --canvas-ruler-border: var(--seal-800);
+  --syntax-keyword: var(--ice-300);
+  --syntax-definition: var(--seal-50);
+  --syntax-property: var(--seal-200);
+  --syntax-type: var(--lilac-300);
+  --syntax-setting: var(--blush-300);
+  --syntax-string: var(--sand-300);
+  --syntax-number: var(--blush-400);
+  --syntax-operator: var(--ice-400);
+  --syntax-punctuation: var(--seal-400);
+  --syntax-comment: var(--seal-500);
+  --shadow-color: 256 40% 3%;
+
+  color-scheme: dark;
+}

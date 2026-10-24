@@ -1,0 +1,243 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/inter";
+@import "../shared/ui/styles/tokens.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Static scales. Tailwind's default color palette and radii are reset so only design-system values exist. */
+@theme {
+  --color-*: initial;
+  --color-white: oklch(1 0 0);
+  --color-black: oklch(0 0 0);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+
+  /* Desktop-app type scale (14px base) */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.375rem;
+  --text-md: 0.9375rem;
+  --text-md--line-height: 1.5rem;
+  --text-lg: 1.0625rem;
+  --text-lg--line-height: 1.625rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.375rem;
+
+  --tracking-tight: -0.015em;
+  --tracking-tighter: -0.025em;
+
+  /* A progress bar that can't count its steps: a segment sliding across the track. */
+  --animate-indeterminate: indeterminate 1.2s ease-in-out infinite;
+  @keyframes indeterminate {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(300%);
+    }
+  }
+
+  /* The loading screen's seal: squash on landing, stretch on take-off, a float at the top. */
+  --animate-seal-hop: seal-hop 0.9s ease-in-out infinite;
+  --animate-seal-shadow: seal-shadow 0.9s ease-in-out infinite;
+  @keyframes seal-hop {
+    0%,
+    100% {
+      transform: translateY(0) scale(1.12, 0.86);
+    }
+    15% {
+      transform: translateY(0) scale(0.92, 1.1);
+    }
+    50% {
+      transform: translateY(-14px) scale(1, 1) rotate(-4deg);
+    }
+    80% {
+      transform: translateY(-2px) scale(0.96, 1.05);
+    }
+  }
+  @keyframes seal-shadow {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.22;
+    }
+    50% {
+      transform: scale(0.55);
+      opacity: 0.1;
+    }
+  }
+}
+
+/* Token-backed values (resolved at runtime from tokens.css). */
+@theme inline {
+  --color-ice-50: var(--ice-50);
+  --color-ice-100: var(--ice-100);
+  --color-ice-200: var(--ice-200);
+  --color-ice-300: var(--ice-300);
+  --color-ice-400: var(--ice-400);
+  --color-ice-500: var(--ice-500);
+  --color-ice-600: var(--ice-600);
+  --color-ice-700: var(--ice-700);
+  --color-ice-800: var(--ice-800);
+  --color-ice-900: var(--ice-900);
+  --color-ice-950: var(--ice-950);
+  --color-seal-50: var(--seal-50);
+  --color-seal-100: var(--seal-100);
+  --color-seal-200: var(--seal-200);
+  --color-seal-300: var(--seal-300);
+  --color-seal-400: var(--seal-400);
+  --color-seal-500: var(--seal-500);
+  --color-seal-600: var(--seal-600);
+  --color-seal-700: var(--seal-700);
+  --color-seal-800: var(--seal-800);
+  --color-seal-900: var(--seal-900);
+  --color-seal-950: var(--seal-950);
+  --color-blush-50: var(--blush-50);
+  --color-blush-100: var(--blush-100);
+  --color-blush-200: var(--blush-200);
+  --color-blush-300: var(--blush-300);
+  --color-blush-400: var(--blush-400);
+  --color-blush-500: var(--blush-500);
+  --color-blush-600: var(--blush-600);
+  --color-blush-700: var(--blush-700);
+  --color-blush-800: var(--blush-800);
+  --color-blush-900: var(--blush-900);
+  --color-blush-950: var(--blush-950);
+  --color-sand-50: var(--sand-50);
+  --color-sand-100: var(--sand-100);
+  --color-sand-200: var(--sand-200);
+  --color-sand-300: var(--sand-300);
+  --color-sand-400: var(--sand-400);
+  --color-sand-500: var(--sand-500);
+  --color-sand-600: var(--sand-600);
+  --color-sand-700: var(--sand-700);
+  --color-sand-800: var(--sand-800);
+  --color-sand-900: var(--sand-900);
+  --color-sand-950: var(--sand-950);
+  --color-lilac-50: var(--lilac-50);
+  --color-lilac-100: var(--lilac-100);
+  --color-lilac-200: var(--lilac-200);
+  --color-lilac-300: var(--lilac-300);
+  --color-lilac-400: var(--lilac-400);
+  --color-lilac-500: var(--lilac-500);
+  --color-lilac-600: var(--lilac-600);
+  --color-lilac-700: var(--lilac-700);
+  --color-lilac-800: var(--lilac-800);
+  --color-lilac-900: var(--lilac-900);
+  --color-lilac-950: var(--lilac-950);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-overlay: var(--overlay);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-hover: var(--hover);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-foreground: var(--primary-soft-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-foreground: var(--accent-soft-foreground);
+  --color-board: var(--board);
+  --color-board-foreground: var(--board-foreground);
+  --color-board-soft: var(--board-soft);
+  --color-design: var(--design);
+  --color-design-foreground: var(--design-foreground);
+  --color-design-soft: var(--design-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-destructive: var(--destructive);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-syntax-keyword: var(--syntax-keyword);
+  --color-syntax-definition: var(--syntax-definition);
+  --color-syntax-property: var(--syntax-property);
+  --color-syntax-type: var(--syntax-type);
+  --color-syntax-setting: var(--syntax-setting);
+  --color-syntax-string: var(--syntax-string);
+  --color-syntax-number: var(--syntax-number);
+  --color-syntax-operator: var(--syntax-operator);
+  --color-syntax-punctuation: var(--syntax-punctuation);
+  --color-syntax-comment: var(--syntax-comment);
+  --color-syntax-error: var(--syntax-error);
+
+  /* Sharp corners: every rounded-* utility stays at or below 8px. */
+  --radius-*: initial;
+  --radius-xs: var(--corner-xs);
+  --radius-sm: var(--corner-sm);
+  --radius-md: var(--corner);
+  --radius-lg: var(--corner-card);
+  --radius-xl: var(--corner-max);
+  --radius-2xl: var(--corner-max);
+  --radius-3xl: var(--corner-max);
+  --radius-4xl: var(--corner-max);
+  --radius-card: var(--corner-card);
+
+  --shadow-xs: var(--elevation-xs);
+  --shadow-soft: var(--elevation-soft);
+  --shadow-lifted: var(--elevation-lifted);
+  --shadow-popover: var(--elevation-popover);
+
+  --ease-out: var(--easing-out);
+  --default-transition-duration: var(--duration-fast);
+  --default-transition-timing-function: var(--easing-out);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background font-sans text-base text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    background-color: var(--ice-200);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
