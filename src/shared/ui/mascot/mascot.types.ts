@@ -30,14 +30,6 @@ export interface SealSpot {
   opacity: number;
 }
 
-/** Position of a prop. Props are drawn around their own (0, 0), then moved here. */
-export interface Placement {
-  x?: number;
-  y?: number;
-  rotate?: number;
-  scale?: number;
-}
-
 /** Layers, back to front: `behind` → seal → `front` → flippers (so they overlap what's held). */
 export interface SealSceneProps {
   behind?: ReactNode;
@@ -46,18 +38,4 @@ export interface SealSceneProps {
   right?: FlipperPose;
   mood?: SealMood;
   className?: string;
-}
-
-export interface ItemProps extends Placement {
-  color?: string;
-}
-
-export interface SpeechBubbleProps extends ItemProps {
-  text: string;
-  /** Put the tail on the right instead of the left. */
-  flip?: boolean;
-}
-
-export interface GlassesProps {
-  kind: "sun" | "reading";
 }

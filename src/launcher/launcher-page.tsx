@@ -6,6 +6,7 @@ import { Button } from "@shared/ui/components/ui/button";
 import { AppHeader } from "@shared/ui/layout/app-header";
 import { PageContainer } from "@shared/ui/layout/page-container";
 import { cn } from "@shared/ui/lib/utils";
+import { SealScene } from "@shared/ui/mascot/seal-scene";
 import { AppCard } from "./app-card";
 import { HeroSeal } from "./hero-seal";
 import { useAppsStore } from "./apps-store";
@@ -56,7 +57,7 @@ export function LauncherPage() {
 
       <section className="relative overflow-hidden border-b bg-linear-to-b from-ice-100 to-background">
         <Clouds />
-        <PageContainer className="relative flex items-center gap-6 py-6">
+        <PageContainer className="relative flex items-center gap-12 pt-10 pb-6">
           <HeroSeal
             state={
               checking
@@ -91,6 +92,20 @@ export function LauncherPage() {
           </div>
         )}
       </PageContainer>
+
+      <footer className="border-t">
+        <PageContainer className="flex items-center justify-between gap-4 py-4 text-sm text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <SealScene mood="happy" className="w-14" />
+            Made with love by the foca watona
+          </span>
+          <span className="flex items-center gap-2">
+            Created by
+            <img src="/darkredgm_logo.png" alt="" width={18} height={18} />
+            <span className="font-semibold text-foreground">DarkRedGM</span>
+          </span>
+        </PageContainer>
+      </footer>
     </div>
   );
 }

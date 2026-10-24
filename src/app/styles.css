@@ -46,6 +46,41 @@
     }
   }
 
+  /* The headset seal nodding along to its music. */
+  --animate-vibe: vibe 0.9s ease-in-out infinite;
+  --animate-vibe-fast: vibe 0.45s ease-in-out infinite;
+  @keyframes vibe {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-4deg);
+    }
+    25% {
+      transform: translateY(-6px) rotate(0deg) scale(1.02, 0.98);
+    }
+    50% {
+      transform: translateY(0) rotate(4deg);
+    }
+    75% {
+      transform: translateY(-6px) rotate(0deg) scale(1.02, 0.98);
+    }
+  }
+
+  /* Music notes drifting up and away. */
+  --animate-note: note 2.4s ease-out infinite;
+  @keyframes note {
+    0% {
+      transform: translate(0, 0) rotate(0deg) scale(0.6);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(14px, -36px) rotate(20deg) scale(1.1);
+      opacity: 0;
+    }
+  }
+
   /* The loading screen's seal: squash on landing, stretch on take-off, a float at the top. */
   --animate-seal-hop: seal-hop 0.9s ease-in-out infinite;
   --animate-seal-shadow: seal-shadow 0.9s ease-in-out infinite;

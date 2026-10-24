@@ -1,16 +1,11 @@
 /** Pure helpers for drawing the mascot (no React). */
-import type { Placement, SealSpot } from "./mascot.types";
+import type { SealSpot } from "./mascot.types";
 
 interface Ellipse {
   cx: number;
   cy: number;
   rx: number;
   ry: number;
-}
-
-/** SVG transform for a prop drawn around (0, 0). */
-export function toTransform({ x = 0, y = 0, rotate = 0, scale = 1 }: Placement): string {
-  return `translate(${x} ${y}) rotate(${rotate}) scale(${scale})`;
 }
 
 /** Tiny seeded random generator (mulberry32): same seed, same numbers, every time. */

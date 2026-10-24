@@ -38,5 +38,4 @@ export const MASCOT_COLORS = {
   nose: "#3b4552",
   shadow: "#0f172a",
   blush: "#f4bba8",
-  metal: "#64748b",
 } as const;
