@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { RefreshCw } from "lucide-react";
 
 import { Wordmark } from "@shared/ui/brand/wordmark";
+import { Badge } from "@shared/ui/components/ui/badge";
 import { Button } from "@shared/ui/components/ui/button";
 import { AppHeader } from "@shared/ui/layout/app-header";
 import { PageContainer } from "@shared/ui/layout/page-container";
@@ -10,6 +11,8 @@ import { SealScene } from "@shared/ui/mascot/seal-scene";
 import { AppCard } from "./app-card";
 import { HeroSeal } from "./hero-seal";
 import { useAppsStore } from "./apps-store";
+import { SelfUpdateBanner } from "./self-update-banner";
+import { useSelfUpdateStore } from "./self-update-store";
 import { isNewer, onInstallProgress } from "./launcher-api";
 
 export function LauncherPage() {
@@ -17,9 +20,11 @@ export function LauncherPage() {
   const checking = useAppsStore((s) => s.checking);
   const releases = useAppsStore((s) => s.releases);
   const { refresh, setProgress } = useAppsStore.getState();
+  const version = useSelfUpdateStore((s) => s.version);
 
   useEffect(() => {
     void refresh();
+    void useSelfUpdateStore.getState().load();
     const unlisten = onInstallProgress(setProgress);
     return () => void unlisten.then((stop) => stop());
   }, [refresh, setProgress]);
@@ -46,14 +51,28 @@ export function LauncherPage() {
     <div className="flex min-h-full flex-col">
       <AppHeader
         actions={
-          <Button variant="ghost" size="sm" disabled={checking} onClick={() => void refresh()}>
+          <Button
+            variant="ghost"
+            size="sm"
+            disabled={checking}
+            onClick={() => {
+              void refresh();
+              void useSelfUpdateStore.getState().check();
+            }}
+          >
             <RefreshCw className={cn(checking && "animate-spin")} />
             Check for updates
           </Button>
         }
       >
         <Wordmark />
+        {version && (
+          <Badge variant="secondary" title="Cloudy Launcher version">
+            v{version}
+          </Badge>
+        )}
       </AppHeader>
+      <SelfUpdateBanner />
 
       <section className="relative overflow-hidden border-b bg-linear-to-b from-ice-100 to-background">
         <Clouds />

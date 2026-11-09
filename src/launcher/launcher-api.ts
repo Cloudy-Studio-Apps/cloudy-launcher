@@ -30,3 +30,14 @@ export function isNewer(a: string, b: string): boolean {
   }
   return false;
 }
+
+/** Matches `InstallKind` in src-tauri/src/self_install.rs: how the launcher itself is installed. */
+export type LauncherInstallKind = "installer" | "appimage" | "package" | "script";
+
+export const launcherInstallKind = () => invoke<LauncherInstallKind>("launcher_install_kind");
+
+/** The one-line Linux install (and update) command. */
+export const launcherInstallCommand = () => invoke<string>("launcher_install_command");
+
+/** Opens a terminal running the install command. */
+export const runInstallInTerminal = () => invoke<void>("run_install_in_terminal");

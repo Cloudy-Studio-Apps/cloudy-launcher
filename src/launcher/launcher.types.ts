@@ -21,7 +21,8 @@ export interface Release {
   version: string;
   notes: string | null;
   publishedAt: string | null;
-  size: number;
+  /** The installer's size in bytes, `null` when unknown. */
+  size: number | null;
 }
 
 /** The `install-progress` event. */

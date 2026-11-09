@@ -132,20 +132,7 @@ async fn download(
     }
 
     if let Some(pubkey) = app.pubkey {
-        let signature_url = release
-            .signature_url
-            .as_deref()
-            .ok_or("The release has no signature for this download, so it wasn't installed.")?;
-        let signature = client
-            .get(signature_url)
-            .send()
-            .await
-            .and_then(|r| r.error_for_status())
-            .map_err(|e| format!("Couldn't download the signature: {e}"))?
-            .text()
-            .await
-            .map_err(|e| e.to_string())?;
-        verify(&data, pubkey, &signature)?;
+        verify(&data, pubkey, &release.signature)?;
     }
     Ok(data)
 }

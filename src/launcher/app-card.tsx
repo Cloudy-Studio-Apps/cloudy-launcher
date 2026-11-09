@@ -9,6 +9,7 @@ import { cn } from "@shared/ui/lib/utils";
 import { AppLogo } from "./app-logo";
 import { useAppsStore } from "./apps-store";
 import { isNewer } from "./launcher-api";
+import { ProgressBar } from "./progress-bar";
 import type { AppCardProps } from "./app-card.types";
 
 type Tone = "idle" | "busy" | "ready" | "update" | "error";
@@ -65,7 +66,11 @@ export function AppCard({ app }: AppCardProps) {
   else if (installed)
     [tone, status] = ["ready", installed.managed ? "Up to date" : "Installed by your system"];
   else if (release === undefined && checking) [tone, status] = ["busy", "Checking for releases…"];
-  else if (release) status = `Version ${release.version} · ${megabytes(release.size)}`;
+  else if (release)
+    status =
+      release.size === null
+        ? `Version ${release.version}`
+        : `Version ${release.version} · ${megabytes(release.size)}`;
   else status = "No release for your system yet";
   if (error) tone = "error";
 
@@ -153,21 +158,5 @@ export function AppCard({ app }: AppCardProps) {
         </div>
       </div>
     </Card>
-  );
-}
-
-/** A determinate bar for `value` in 0..1, or a sliding one when it's unknown. */
-function ProgressBar({ value }: { value: number | undefined }) {
-  return (
-    <div className="h-1.5 overflow-hidden rounded-full bg-muted">
-      {value === undefined ? (
-        <div className="h-full w-1/3 animate-indeterminate rounded-full bg-primary" />
-      ) : (
-        <div
-          className="h-full rounded-full bg-primary transition-[width]"
-          style={{ width: `${Math.round(value * 100)}%` }}
-        />
-      )}
-    </div>
   );
 }

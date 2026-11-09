@@ -39,5 +39,16 @@
     "licenseFile": "../LICENSE",
     "category": "Utility",
     "shortDescription": "Install and update the Cloudy apps"
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZDOURDRkQ3NUQ4RjREODMKUldTRFRZOWQxOCtkL0drbG5pZmxhcFhpU2lVdXhaUXJyWHJCQ0lGM283VnhDcjVtUzRQWENhcUoK",
+      "endpoints": [
+        "https://github.com/Cloudy-Studio-Apps/cloudy-launcher/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
   }
 }

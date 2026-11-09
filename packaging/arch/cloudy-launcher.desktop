@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Cloudy Launcher
+Comment=Install and update the Cloudy apps
+Exec=cloudy-launcher
+Icon=cloudy-launcher
+StartupWMClass=cloudy-launcher
+Categories=Utility;
+Terminal=false
