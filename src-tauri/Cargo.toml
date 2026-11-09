@@ -1,6 +1,6 @@
 [package]
 name = "cloudy-launcher"
-version = "0.1.0"
+version = "0.0.1"
 description = "Cloudy Launcher — install and update the Cloudy apps"
 authors = ["DarkRedgm"]
 license = "AGPL-3.0-only"
