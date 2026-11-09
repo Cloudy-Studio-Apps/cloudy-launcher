@@ -1,6 +1,8 @@
 import { Box } from "lucide-react";
 import type { ComponentType } from "react";
 
+import { ClipSealLogo } from "@shared/ui/brand/clip-seal-logo";
+import { ConvertSealLogo } from "@shared/ui/brand/convert-seal-logo";
 import { ReaderSealLogo } from "@shared/ui/brand/reader-seal-logo";
 import { SealLogo } from "@shared/ui/brand/seal-logo";
 import { cn } from "@shared/ui/lib/utils";
@@ -10,6 +12,8 @@ import type { AppLogoProps } from "./app-logo.types";
 const LOGOS: Record<string, { mark: ComponentType<{ size?: number }>; className: string }> = {
   "cloudy-canvas": { mark: SealLogo, className: "bg-ice-500" },
   "cloudy-pdf": { mark: ReaderSealLogo, className: "bg-blush-300" },
+  "cloudy-clip": { mark: ClipSealLogo, className: "bg-lilac-300" },
+  "cloudy-convert": { mark: ConvertSealLogo, className: "bg-sand-300" },
 };
 
 export function AppLogo({ id, size = 64, className }: AppLogoProps) {

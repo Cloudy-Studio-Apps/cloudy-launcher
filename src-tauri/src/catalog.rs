@@ -20,6 +20,9 @@ pub struct CatalogApp {
     pub pubkey: Option<&'static str>,
 }
 
+/// The minisign public key every Cloudy app signs its releases with (the repos' `TAURI_SIGNING_PRIVATE_KEY`).
+const CLOUDY_PUBKEY: &str = "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZDOURDRkQ3NUQ4RjREODMKUldTRFRZOWQxOCtkL0drbG5pZmxhcFhpU2lVdXhaUXJyWHJCQ0lGM283VnhDcjVtUzRQWENhcUoK";
+
 pub static APPS: &[CatalogApp] = &[
     CatalogApp {
         id: "cloudy-canvas",
@@ -27,9 +30,7 @@ pub static APPS: &[CatalogApp] = &[
         description: "Boards and designs on one canvas.",
         repo: "Cloudy-Studio-Apps/cloudy-canvas",
         binary: "cloudy-canvas",
-        pubkey: Some(
-            "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZDOURDRkQ3NUQ4RjREODMKUldTRFRZOWQxOCtkL0drbG5pZmxhcFhpU2lVdXhaUXJyWHJCQ0lGM283VnhDcjVtUzRQWENhcUoK",
-        ),
+        pubkey: Some(CLOUDY_PUBKEY),
     },
     CatalogApp {
         id: "cloudy-pdf",
@@ -37,7 +38,23 @@ pub static APPS: &[CatalogApp] = &[
         description: "A minimalist PDF reader.",
         repo: "Cloudy-Studio-Apps/cloudy-pdf",
         binary: "cloudy-pdf",
-        pubkey: None,
+        pubkey: Some(CLOUDY_PUBKEY),
+    },
+    CatalogApp {
+        id: "cloudy-clip",
+        name: "Cloudy Clip",
+        description: "A simple video editor that agents can edit with you.",
+        repo: "Cloudy-Studio-Apps/cloudy-clip",
+        binary: "cloudy-clip",
+        pubkey: Some(CLOUDY_PUBKEY),
+    },
+    CatalogApp {
+        id: "cloudy-convert",
+        name: "Cloudy Convert",
+        description: "Convert footage for editing and save media from the web.",
+        repo: "Cloudy-Studio-Apps/cloudy-convert",
+        binary: "cloudy-convert",
+        pubkey: Some(CLOUDY_PUBKEY),
     },
 ];
 
